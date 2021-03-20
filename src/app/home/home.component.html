@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" *ngIf="error">
+        <h3>An Error Occured!</h3>
+        <p>{{ error }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <p *ngIf="loadedPosts.length < 1 && !isLoading && !error">No data available!</p>
+      <div class="card" *ngFor="let post of loadedPosts">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.content }}</p>
+          <a [routerLink]="['/posts', post.id]" class="btn btn-sm btn-success">Read</a>
+        </div>
+      </div>
+      <p *ngIf="isLoading">Loading...</p>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-danger" (click)="onClearPosts()">Clear</button>
+    </div>
+  </div>
+</div>
